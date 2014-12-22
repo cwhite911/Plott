@@ -1,0 +1,1 @@
+cmd_Release/pcap_binding.node := ./gyp-mac-tool flock ./Release/linker.lock c++ -bundle -Wl,-search_paths_first -mmacosx-version-min=10.5 -arch x86_64 -L./Release  -o Release/pcap_binding.node Release/obj.target/pcap_binding/pcap_binding.o Release/obj.target/pcap_binding/pcap_session.o -undefined dynamic_lookup -lpcap
