@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/cwhite911/Plott",
   "dependencies": {
-    "pcap": "^1.2.0"
+    "pcap": "^1.2.0",
+    "node-wifiscanner": "~0.1.0"
   }
 }
