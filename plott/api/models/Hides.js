@@ -10,14 +10,12 @@ module.exports = {
   attributes: {
     _id: {
       type: 'integer',
-      required: true
     },
     set: {
       model: 'tracks'
     },
     geom: {
       type: 'object'
-      required: true
     }
   }
 };

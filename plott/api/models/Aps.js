@@ -17,7 +17,7 @@ module.exports = {
     },
     location: {
       type: 'string'
-    }
+    },
     geom:{
       type: 'object'
     }

@@ -31,7 +31,7 @@ module.exports = {
     tracks: {
       collection: 'tracks',
       via: 'dog'
-    }
+    },
     owner: {
       model: 'owners'
     }
