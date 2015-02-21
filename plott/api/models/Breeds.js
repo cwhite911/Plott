@@ -6,10 +6,21 @@
 */
 
 module.exports = {
+  // Define a custom table name
+  tableName: 'tbl_breeds',
 
+  // Set schema true/false for adapters that support schemaless
+  schema: true,
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
   attributes: {
-    breed: {
-      model: 'dogs'
+    breedid: {
+      type: 'string',
+      maxLength: 10
+    },
+    name: {
+      type: 'string',
+      maxLength: 100
     }
   }
 };

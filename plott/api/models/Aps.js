@@ -7,19 +7,19 @@
 
 module.exports = {
 
-  attributes: {
-    _id: {
-      type: 'string',
-      required: true
-    },
-    alias: {
-      type: 'string'
-    },
-    location: {
-      type: 'string'
-    },
-    geom:{
-      type: 'object'
-    }
-  }
+  // attributes: {
+  //   _id: {
+  //     type: 'string',
+  //     required: true
+  //   },
+  //   alias: {
+  //     type: 'string'
+  //   },
+  //   location: {
+  //     type: 'string'
+  //   },
+  //   geom:{
+  //     type: 'object'
+  //   }
+  // }
 };

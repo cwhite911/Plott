@@ -7,21 +7,20 @@
 
 module.exports = {
 
-  attributes: {
-    _id: {
-      type: 'integer',
-      required: true
-    },
-    name: {
-      type: 'string',
-      required: true
-    },
-    dogs: {
-      collection: 'dogs',
-      via: 'owner'
-    },
-    contact: {
-      type: 'object'
-    }
-  }
+  // attributes: {
+  //   _id: {
+  //     type: 'integer',
+  //   },
+  //   name: {
+  //     type: 'string',
+  //
+  //   },
+  //   dogs: {
+  //     collection: 'dogs',
+  //     via: 'owner'
+  //   },
+  //   contact: {
+  //     type: 'object'
+  //   }
+  // }
 };

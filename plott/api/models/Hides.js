@@ -7,15 +7,15 @@
 
 module.exports = {
 
-  attributes: {
-    _id: {
-      type: 'integer',
-    },
-    set: {
-      model: 'tracks'
-    },
-    geom: {
-      type: 'object'
-    }
-  }
+  // attributes: {
+  //   _id: {
+  //     type: 'integer',
+  //   },
+  //   set: {
+  //     model: 'tracks'
+  //   },
+  //   geom: {
+  //
+  //   }
+  // }
 };

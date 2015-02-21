@@ -7,33 +7,33 @@
 
 module.exports = {
 
-  attributes: {
-    _id: {
-      type: 'integer',
-      unique: true
-    },
-    name: {
-      type: 'string'
-    },
-    nickname: {
-      type: 'string'
-    },
-    breed: {
-      collection: 'breeds',
-      via: 'breed'
-    },
-    training: {
-      type: 'integer'
-    },
-    group: {
-      type: 'string'
-    },
-    tracks: {
-      collection: 'tracks',
-      via: 'dog'
-    },
-    owner: {
-      model: 'owners'
-    }
-  }
+  // attributes: {
+  //   _id: {
+  //     type: 'integer',
+  //     unique: true
+  //   },
+  //   name: {
+  //     type: 'string'
+  //   },
+  //   nickname: {
+  //     type: 'string'
+  //   },
+  //   breed: {
+  //     collection: 'breeds',
+  //     via: 'breed'
+  //   },
+  //   training: {
+  //     type: 'integer'
+  //   },
+  //   group: {
+  //     type: 'string'
+  //   },
+  //   tracks: {
+  //     collection: 'tracks',
+  //     via: 'dog'
+  //   },
+  //   owner: {
+  //     model: 'owners'
+  //   }
+  // }
 };

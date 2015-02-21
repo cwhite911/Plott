@@ -6,25 +6,24 @@
 */
 
 module.exports = {
-
-  attributes: {
-    _id: {
-      type: 'integer',
-      required: true
-    },
-    dog: {
-      model: 'dogs'
-    },
-    hides: {
-      collection: 'hides',
-      via: 'set'
-    },
-    startTime: {
-      type: 'datetime'
-    },
-    endTime: {
-      type: 'datetime'
-    },
-    geom: 'object'
-  }
+  //
+  // attributes: {
+  //   _id: {
+  //     type: 'integer',
+  //   },
+  //   dog: {
+  //     model: 'dogs'
+  //   },
+  //   hides: {
+  //     collection: 'hides',
+  //     via: 'set'
+  //   },
+  //   startTime: {
+  //     type: 'datetime'
+  //   },
+  //   endTime: {
+  //     type: 'datetime'
+  //   },
+  //   geom: 'object'
+  // }
 };
