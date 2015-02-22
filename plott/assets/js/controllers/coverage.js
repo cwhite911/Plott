@@ -17,38 +17,44 @@ angular.module('plott')
       }
 
       leafletData.getMap().then(function(map) {
+        console.log('Im Running');
         // L.GeoIP.centerMapOnPosition(map, 15);
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
       });
       angular.extend($scope, {
-                ruffin: {
-                  lat: 36.02215599035083,
-                  lng: -78.90300929546356,
-                  zoom: 21
-                },
-                markers: {
-                    m1: {
-                      lat: 36.02215599035083,
-                      lng: -78.90300929546356,
-                    }
-                },
-                layers: {
-                    baselayers: {
-        				    	world: {
-        					    	name: "2004 Ruffin St",
-        					        type: "dynamic",
-        					        url: "http://152.46.19.33/arcgis/rest/services/plott/Ruffin/MapServer",
-        					        visible: true,
-        					        layerOptions: {
-        					            layers: [0, 1, 2],
-        				                opacity: 1,
-        				                attribution: "Copyright:© 2015 Corey White, Plott"
-        					        }
-        				    	},
-
-                    },
-                },
-            });
-
-    }]);
+        ruffin: {
+          lat: 36.022014982938515,
+          lng: -78.90247553586958,
+          zoom: 22
+        },
+        markers: {
+          m1: {
+            lat: 36.022014982938515,
+            lng: -78.90247553586958,
+          }
+        },
+        layers: {
+          baselayers: {
+            darkRaleigh: {
+              name: 'Raleigh - Dark',
+              url: 'https://{s}.tiles.mapbox.com/v3/ctwhite.l4hma6jb/{z}/{x}/{y}.png',
+              type: 'xyz'
+            },
+          },
+          overlays: {
+            ruffin: {
+        		  name: "2004 Ruffin St",
+        			type: "dynamic",
+        			url: "http://152.46.19.33/arcgis/rest/services/plott/Ruffin/MapServer",
+        			visible: true,
+        			layerOptions: {
+        		    layers: [0, 1, 2],
+        				opacity: 1,
+        				attribution: "Copyright:© 2015 Corey White, Plott"
+        			}
+        	  },
+          }
+        },
+      });
+}]);
