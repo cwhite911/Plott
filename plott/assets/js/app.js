@@ -19,11 +19,8 @@ angular
         templateUrl: '../templates/index.html',
       })
       .when('/coverage', {
-        templateUrl: '../templates/coverage.html'
-        // controller: 'addDocCtrl',
-        // data: {
-        //   authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
-        // }
+        templateUrl: '../templates/coverage.html',
+        controller: 'coverageCtrl'
       })
       // .when('/error', {
       //   templateUrl: '404.html'
