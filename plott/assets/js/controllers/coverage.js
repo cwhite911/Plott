@@ -6,6 +6,7 @@ angular.module('plott')
       //Get User location
       function onLocationFound(e) {
         var radius = e.accuracy / 2;
+        console.log('Hey');
           L.marker(e.latlng).addTo(map)
             .bindPopup("You are within " + radius + " meters from this point").openPopup();
             L.circle(e.latlng, radius).addTo(map);
@@ -17,10 +18,14 @@ angular.module('plott')
       }
 
       leafletData.getMap().then(function(map) {
-        console.log('Im Running');
+
         // L.GeoIP.centerMapOnPosition(map, 15);
         map.on('locationfound', onLocationFound);
         map.on('locationerror', onLocationError);
+        map.on('click', function (e){
+          console.log(e.latlng);
+          $scope.markers.m1 = e.latlng;
+        });
       });
       angular.extend($scope, {
         ruffin: {
