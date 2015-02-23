@@ -20,7 +20,8 @@
     "grunt-contrib-coffee": "~0.10.1",
     "node-wifiscanner": "~0.2.0",
     "sails-postgresql": "~0.10.14",
-    "sails-generate-bower": "0.0.2"
+    "sails-generate-bower": "0.0.2",
+    "sails-mongo": "~0.10.5"
   },
   "name": "plott",
   "private": true,

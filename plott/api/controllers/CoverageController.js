@@ -21,7 +21,12 @@ module.exports = {
 				timeStamp: +new Date(),
 				data: data
 			};
-
+			Coverage.create(spotInfo).exec(function createCB(err,created){
+				if (err){
+					console.error(err);
+				}
+  			console.log(created.data.length + ' access points collected.');
+  		});
 			res.send(spotInfo);
 		});
 	}
