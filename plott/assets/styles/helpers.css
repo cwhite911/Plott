@@ -2,6 +2,7 @@
   text-align: center;
 }
 .collect-button {
+  position: relative;
   margin: auto 0;
   /*border-top: 1px solid #96d1f8;*/
    background: #007ccf;

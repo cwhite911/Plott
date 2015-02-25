@@ -11,7 +11,9 @@ module.exports = {
 
 	//scan local-wifi
 	getWifi: function (req, res){
-		var spotInfo;
+		var spotInfo,
+				geom = req.query.geom;
+
 		wifiscanner.scan(function(err, data){
 			if (err) {
 				console.log("Error : " + err);
@@ -19,7 +21,8 @@ module.exports = {
 			}
 			spotInfo = {
 				timeStamp: +new Date(),
-				data: data
+				data: data,
+				geom: geom
 			};
 			Coverage.create(spotInfo).exec(function createCB(err,created){
 				if (err){

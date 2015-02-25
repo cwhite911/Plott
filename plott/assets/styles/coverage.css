@@ -13,20 +13,24 @@ html, body {
 
 .map-nav {
   position: relative;
-  width: 25%;
+  width: 15%;
   height: 100%;
   float: left;
-  background: #4ee5a4;
+  background: #083A35;
 }
 
 .map-body {
   position: relative;
-  width: 75%;
+  width: 85%;
   height: 100%;
   float: right;
 }
 
-.angular-leaflet-map {
+#map {
   width: auto;
   height: 100%;
+}
+
+.coverage-title {
+  color: #7EC800;
 }
