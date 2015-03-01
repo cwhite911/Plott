@@ -23,7 +23,8 @@
     "sails-generate-bower": "0.0.2",
     "sails-mongo": "~0.10.5",
     "eqsolver": "0.0.5",
-    "trilateration": "0.0.1"
+    "trilateration": "0.0.1",
+    "proj4geojson": "~0.2.0"
   },
   "name": "plott",
   "private": true,
