@@ -46,7 +46,12 @@ angular.module('plott')
         //Get heatmap data
         $http.get('/coverage/getHeatMap').then(function (data) {
           console.log(data.data);
-          var heat = L.heatLayer(data.data).addTo(map);
+          var heat = L.heatLayer(data.data, {
+            minOpacity: 0.2,
+            radius: 100,
+            blur: 30,
+            max: 100
+          }).addTo(map);
         },
         function(err){
           console.log(err);
