@@ -10,8 +10,7 @@
  */
 angular
   .module('plott', [
-    'ngRoute',
-    'leaflet-directive',
+    'ngRoute'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider

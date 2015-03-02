@@ -27,8 +27,9 @@ var jsFilesToInject = [
   'js/dependencies/sails.io.js',
   'js/dependencies/angular.js',
   'js/dependencies/angular-route.js',
-  'js/dependencies/leaflet.js',
-  'js/dependencies/esri-leaflet.js',
+  // 'js/dependencies/leaflet.js',
+  // 'js/dependencies/esri-leaflet.js',
+  // 'js/dependencies/heatmap.js',
   // Dependencies like jQuery, or Angular are brought in here
   'js/dependencies/**/*.js',
 
