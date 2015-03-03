@@ -29,24 +29,25 @@ module.exports = {
 		var spotInfo,
 				geom = req.query.geom;
 
-		wifiscanner.scan(function(err, data){
-			if (err) {
-				console.log("Error : " + err);
-				return;
-			}
-			spotInfo = {
-				timeStamp: +new Date(),
-				data: data,
-				geom: geom
-			};
-			Coverage.create(spotInfo).exec(function createCB(err,created){
-				if (err){
-					console.error(err);
+			wifiscanner.scan(function(err, data){
+				if (err) {
+					console.log("Error : " + err);
+					return;
 				}
-  			console.log(created.data.length + ' access points collected.');
-  		});
-			res.send(spotInfo);
-		});
+				spotInfo = {
+					timeStamp: +new Date(),
+					data: data,
+					geom: geom
+				};
+				Coverage.create(spotInfo).exec(function createCB(err,created){
+					if (err){
+						console.error(err);
+					}
+	  			console.log(created.data.length + ' access points collected.');
+	  		});
+				res.send(spotInfo);
+			});
+	
 	},
 
 	//Returns data needed to generate heat map on a given day, location, or combination.

@@ -3,6 +3,22 @@
     <h1 class="text-center coverage-title">Wifi-Coverage Map</h1>
     <!-- <button class="collect-button">Collect Sample</button> -->
   </nav>
+  <div id='legend' class="legend-container" style='display:none;'>
+  <strong>Wifi-Coverage</strong>
+  <nav class='legend clearfix'>
+    <span style='background:#045A8D;'></span>
+    <span style='background:#74A9CF;'></span>
+    <span style='background:#2cca25;'></span>
+    <span style='background:#d0f211;'></span>
+    <span style='background:#db2316;'></span>
+    <label>0 - 20%</label>
+    <label>40%</label>
+    <label>60%</label>
+    <label>80%</label>
+    <label>100%</label>
+    <small>Source: <a href="#link to source">Plott</a></small>
+</div>
+<coverage-data data="spotCoverage"></coverage-data>
   <main class="map-body">
     <div id="map"></div>
     <!-- <leaflet center="ruffin" markers="markers" layers="layers"></leaflet> -->
