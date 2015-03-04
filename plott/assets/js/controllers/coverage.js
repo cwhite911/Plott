@@ -24,7 +24,7 @@ angular.module('plott')
 
       //Add sample point on click and post results to mongodb
         map.on('click', function (e){
-          console.log(e.latlng);
+          console.log(e.containerPoint);
           $scope.markers = e.latlng;
           sample = L.marker(e.latlng).addTo(map);
           config = {
@@ -61,7 +61,17 @@ angular.module('plott')
           console.log(err);
         });
 
-
+        $scope.currentPos;
+        $scope.getTrack = function (){
+          $http.get('/tracks/signalToPoint').then(function(data){
+            console.log(data);
+            $scope.currentPos = L.geoJson(data.data).addTo(map);
+            console.log($scope.currentPos);
+          },
+          function(err){
+            console.log(err);
+          });
+        }
 
 
 }]);

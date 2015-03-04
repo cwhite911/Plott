@@ -17,6 +17,8 @@ var wifiscanner = require('node-wifiscanner'),
 				// y: 36.022025
 				x: 2028837.603,
 				y: 826942.359,
+				// x: 919,
+				// y: 393,
 				range: 20
 			},
 			{
@@ -26,6 +28,8 @@ var wifiscanner = require('node-wifiscanner'),
 				// y: 36.022058
 				x: 2028850.515,
 				y: 826930.098,
+				// x: 787,
+				// y: 263,
 				range: 10
 			},
 			{
@@ -35,6 +39,8 @@ var wifiscanner = require('node-wifiscanner'),
 				// y: 36.021989
 				x: 2028827.403,
 				y: 826917.403,
+				// x: 695,
+				// y: 523,
 				range: 20
 			}
 		];
@@ -130,3 +136,5 @@ module.exports = {
 		res.json(wgs84geojson);
 	}
 };
+
+// X: 776.7500702247191; Y: 405.5078133102853
