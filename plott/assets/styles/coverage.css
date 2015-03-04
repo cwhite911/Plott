@@ -54,9 +54,51 @@ html, body {
   position: fixed;
   top: 10%;
   right: 10px;
-  color: #7EC800;
+  color: #1ec704;
   background: rgba(0, 0, 0, 0.79);
   border: rgba(104, 104, 104, 0.79);
   padding: 10px 5px;
   z-index:2;
+  height: 35%;
+  width: 10%;
+  overflow-y: auto;
 }
+
+.coverage-details table tbody {
+  margin: 5px 2px;
+  border: 1px rgba(153, 153, 153, 0.76) solid;
+  padding: 2px 2px;
+}
+
+/*.coverage-details table tbody {
+    line-height: 0;
+    font-size: 0;
+}
+.coverage-details table tbody td {
+    line-height: 20px;
+    font-size: 14px;
+}
+.coverage-details table tr {
+  margin: 0 0;
+  padding: 1px 1px;
+}*/
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #4f4949;
+  } /* the new scrollbar will have a flat appearance with the set background color */
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    } /* this will style the thumb, ignoring the track */
+
+    ::-webkit-scrollbar-button {
+      background-color: #7c2929;
+      } /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+
+      ::-webkit-scrollbar-corner {
+        background-color: black;
+        } /* if both the vertical and the
