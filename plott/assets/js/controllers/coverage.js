@@ -23,27 +23,30 @@ angular.module('plott')
       if (map.tap) map.tap.disable();
 
       //Add sample point on click and post results to mongodb
+
         map.on('click', function (e){
           console.log(e.containerPoint);
-          $scope.markers = e.latlng;
-          sample = L.marker(e.latlng).addTo(map);
-          config = {
-            params: {
-              geom: sample.toGeoJSON()
-            }
-          };
-
-          $http.get('/coverage/getWifi', config).then(function (data) {
-            console.log(data);
-            $scope.spotCoverage = {
-              signals: data.data.data,
-              time: data.timeStamp
+          if ($scope.addSample){
+            $scope.markers = e.latlng;
+            sample = L.marker(e.latlng).addTo(map);
+            config = {
+              params: {
+                geom: sample.toGeoJSON()
+              }
             };
-          },
-          function(err){
-            console.log(err);
-          });
 
+
+            $http.get('/coverage/getWifi', config).then(function (data) {
+              console.log(data);
+              $scope.spotCoverage = {
+                signals: data.data.data,
+                time: data.timeStamp
+              };
+            },
+            function(err){
+              console.log(err);
+            });
+          }
         });
 
 

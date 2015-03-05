@@ -10,7 +10,8 @@
  */
 angular
   .module('plott', [
-    'ngRoute'
+    'ngRoute',
+    'toggle-switch'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider

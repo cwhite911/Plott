@@ -1,7 +1,11 @@
 <section class="map-container">
   <nav class="map-nav">
     <h1 class="text-center coverage-title">Wifi-Coverage Map</h1>
-    <button class="collect-button" ng-click="getTrack()">Collect Sample</button>
+    <h2 class="text-center coverage-title">Start Tracking</h2>
+    <div class="collect-button" ng-click="getTrack()">Collect Sample</div>
+    <br>
+    <h2 class="text-center coverage-title">Add Coverage Sample</h2>
+    <toggle-switch ng-model="addSample"></toggle-switch>
   </nav>
   <div id='legend' class="legend-container" style='display:none;'>
   <strong>Wifi-Coverage</strong>
