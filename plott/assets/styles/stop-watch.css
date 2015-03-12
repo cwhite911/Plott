@@ -1,3 +1,15 @@
 .stop-watch {
   color: #7EC800;
+  font-size: 3em;
+}
+.timer {
+  position: fixed;
+  top: 1%;
+  left:17%;
+  color: #1ec704;
+  padding: 10px 5px;
+  z-index:2;
+  height: 35%;
+  width: 15%;
+  overflow-y: auto;
 }

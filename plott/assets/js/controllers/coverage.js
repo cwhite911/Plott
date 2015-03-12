@@ -19,6 +19,24 @@ angular.module('plott')
       map.doubleClickZoom.disable();
       map.scrollWheelZoom.disable();
 
+
+      // var timer = L.Control.extend({
+      //   options: {
+      //     position: 'topleft'
+      //   },
+      //
+      //   onAdd: function (map) {
+          // create the control container with a particular class name
+          // ** you can add the image to the div as a background image using css
+          // var container = L.DomUtil.create('div', 'stop-watch');
+          // container.innerHTML = '<div ng-include="../../templates/timer.html"></div>' //'<stop-watch></stop-watch>';//"<div ng-include src=\"'../../templates/timer.html'\"></div>";
+          // ... initialize other DOM elements, add listeners, etc.
+      //     return container;
+      //   }
+      // });
+      //
+      // map.addControl(new timer());
+
       // Disable tap handler, if present.
       if (map.tap) map.tap.disable();
 
