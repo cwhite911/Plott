@@ -58,11 +58,11 @@ angular.module('plott')
           // if (scope.time.sec < 60){
           //   scope.time.sec++;
           // }
-          else if (scope.time.sec === 60){
+          if (scope.time.sec === 60){
             scope.time.min++;
             scope.time.sec = '00';
           }
-          else if (scope.time.min === 60){
+          if (scope.time.min === 60){
             scope.time.hour++;
             scope.time.min = '00';
           }

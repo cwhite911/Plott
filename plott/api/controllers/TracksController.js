@@ -19,7 +19,7 @@ var wifiscanner = require('node-wifiscanner'),
 				y: 826942.359,
 				// x: 919,
 				// y: 393,
-				range: 20
+				range: 60
 			},
 			{
 				name: 'Chobey',
@@ -30,7 +30,7 @@ var wifiscanner = require('node-wifiscanner'),
 				y: 826930.098,
 				// x: 787,
 				// y: 263,
-				range: 10
+				range: 20
 			},
 			{
 				name:'Autumn',
@@ -41,7 +41,7 @@ var wifiscanner = require('node-wifiscanner'),
 				y: 826917.403,
 				// x: 695,
 				// y: 523,
-				range: 20
+				range: 60
 			}
 		];
 //Converts dBm to quality
