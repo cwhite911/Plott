@@ -16,6 +16,7 @@ angular.module('plott')
   };
 
   Time.prototype = {
+
     display: function (){
       var that = this;
       this.timeArray.forEach(function(item){
@@ -40,9 +41,6 @@ angular.module('plott')
         that.sec++;
         that.mili = '00';
       }
-      // if (scope.time.sec < 60){
-      //   scope.time.sec++;
-      // }
       if (that.sec === 60){
         that.min++;
         that.sec = '00';

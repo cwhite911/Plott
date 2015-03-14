@@ -1,12 +1,13 @@
 <section class="map-container">
   <nav class="map-nav">
     <h1 class="text-center coverage-title">Wifi-Coverage Map</h1>
-    <h2 class="text-center coverage-title">Start Tracking</h2>
-    <div class="collect-button" ng-click="getTrack()">Collect Sample</div>
+    <h2 class="text-center coverage-title">Track</h2>
+    <div class="collect-button" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>
+    <div class="stop-button" ng-click="stopTrack()" ng-show="isCollecting">Stop Tracking</div>
     <br>
     <h2 class="text-center coverage-title">Add Coverage Sample</h2>
     <toggle-switch ng-model="addSample"></toggle-switch>
-    <stop-watch class="timer"></stop-watch>
+    <stop-watch class="timer" ng-show="isCollecting"></stop-watch>
   </nav>
   <div id='legend' class="legend-container" style='display:none;'>
   <strong>Wifi-Coverage</strong>

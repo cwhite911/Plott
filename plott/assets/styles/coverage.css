@@ -55,8 +55,8 @@ html, body {
   top: 10%;
   right: 10px;
   color: #1ec704;
-  background: rgba(0, 0, 0, 0.79);
-  border: rgba(104, 104, 104, 0.79);
+  background: rgba(0, 0, 0, 0);
+  border: rgba(0, 0, 0, 0);
   padding: 10px 5px;
   z-index:2;
   height: 35%;

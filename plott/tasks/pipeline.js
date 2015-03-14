@@ -31,7 +31,12 @@ var jsFilesToInject = [
   // 'js/dependencies/esri-leaflet.js',
   // 'js/dependencies/heatmap.js',
   // Dependencies like jQuery, or Angular are brought in here
+
   'js/dependencies/**/*.js',
+  'js/app.js',
+  'js/factories/*',
+  'js/directives/*',
+  'js/controllers/*',
 
   // All of the rest of your client-side js files
   // will be injected here in no particular order.
