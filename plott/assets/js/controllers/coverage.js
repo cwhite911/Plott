@@ -104,6 +104,14 @@ angular.module('plott')
           }
         };
 
+        $scope.saveTrack = function(){
+          if (angular.isDefined($scope.tracksInterval)) {
+            $interval.cancel($scope.tracksInterval);
+            $scope.isCollecting = false;
+            $scope.tracksInterval = undefined;
+          }
+        };
+
 
 
 }]);

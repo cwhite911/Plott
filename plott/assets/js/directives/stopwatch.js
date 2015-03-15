@@ -5,12 +5,21 @@ angular.module('plott')
   return {
     restrict: 'E',
     transclude: true,
-    // scope: {
-    //   project: '='
-    // },
+    scope: {
+      status: '='
+    },
     templateUrl: 'templates/stop-watch.html',
     link: function (scope, element) {
+      scope.status;
       scope.stopwatch = new StopWatchFactory();
+      scope.$watch('status', function(){
+        if (scope.status){
+          scope.stopwatch.reset().start();
+        }
+        else{
+          scope.stopwatch.stop();
+        }
+      })
 
   }
   }

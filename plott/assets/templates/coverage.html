@@ -4,10 +4,11 @@
     <h2 class="text-center coverage-title">Track</h2>
     <div class="collect-button" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>
     <div class="stop-button" ng-click="stopTrack()" ng-show="isCollecting">Stop Tracking</div>
+    <div class="save-button" ng-click="saveTrack()" ng-show="isCollecting">Save Track</div>
     <br>
     <h2 class="text-center coverage-title">Add Coverage Sample</h2>
     <toggle-switch ng-model="addSample"></toggle-switch>
-    <stop-watch class="timer" ng-show="isCollecting"></stop-watch>
+    <stop-watch status="isCollecting" class="timer" ng-show="isCollecting"></stop-watch>
   </nav>
   <div id='legend' class="legend-container" style='display:none;'>
   <strong>Wifi-Coverage</strong>
