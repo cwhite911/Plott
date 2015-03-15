@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('plott')
-  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval',
-    function ($scope, $http, $filter, $interval) {
+  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory',
+    function ($scope, $http, $filter, $interval, TrackFactory) {
       var map, config, sample;
 
       // io.socket.get('/coverage/getWifi/');
@@ -66,17 +66,37 @@ angular.module('plott')
           console.log(err);
         });
 
+        var track = new TrackFactory();
+
         $scope.currentPos;
-        $scope.isCollecting = false;
+        $scope.isCollecting = track.getStatus();
         $scope.getTrack = function (){
-          $scope.isCollecting = true;
-          $scope.tracksInterval = $interval(function(){
-            $http.get('/tracks/signalToPoint').then(function(response){
-              console.log(response);
+          // var locate = track.start();
+          // console.log(locate);
+          // locate.then(function(response){
+          //   console.log(response);
+          //   track.addPosition(response.data.features[0]);
+          //   $scope.currentPos = L.geoJson(response.data, {
+          //     pointToLayer: function (feature, latlng){
+          //       return L.circleMarker(latlng, {
+          //         fillColor: '#FF7400',
+          //         radius: 4,
+          //         color: '#FFB273',
+          //         weight: 1,
+          //         fillOpacity: 1
+          //       });
+          //     }
+          //   }).addTo(map);
+          // },
+          // function(err){
+          //   console.log(err);
+          // });
+          track.setStatus(true);
+          $scope.isCollecting = track.getStatus();
+          $scope.tracksIntervalPromise = $interval(function(){
+            track.getPosition().then(function(response){
+              track.addPosition(response.data.features[0]);
               $scope.currentPos = L.geoJson(response.data, {
-                style: function (feature) {
-                  return {color: '#63fa11'};
-                },
                 pointToLayer: function (feature, latlng){
                   return L.circleMarker(latlng, {
                     fillColor: '#FF7400',
@@ -97,10 +117,10 @@ angular.module('plott')
         //Stop collecting track data
 
         $scope.stopTrack = function(){
-          if (angular.isDefined($scope.tracksInterval)) {
-            $interval.cancel($scope.tracksInterval);
-            $scope.isCollecting = false;
-            $scope.tracksInterval = undefined;
+          if (angular.isDefined($scope.tracksIntervalPromise)) {
+            $interval.cancel($scope.tracksIntervalPromise);
+            $scope.isCollecting = track.setStatus(false).getStatus();
+            $scope.tracksIntervalPromise = undefined;
           }
         };
 
