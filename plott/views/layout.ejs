@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Plott</title>
 
@@ -36,9 +36,12 @@
     <link rel="stylesheet" href="/styles/helpers.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/leaflet.css">
+    <link rel="stylesheet" href="/styles/locations.css">
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/stop-watch.css">
     <!--STYLES END-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
   </head>
   <body ng-app="plott">
@@ -51,7 +54,36 @@
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div ng-view="" ></div>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/">Plott</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#/locations">Locations</a></li>
+            <li><a href="#/dogs">Dogs</a></li>
+            <li><a href="#/track">Tracks</a></li>
+            <li><a href="#/coverage">Coverage</a></li>
+            <li><a href="#/analysis">Analysis</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+    </div>
+  </nav>
+
+
+  <div ng-view="" ></div>
+
+
 
     <!--
         Client-side Templates
@@ -101,6 +133,9 @@
           + Use a different preprocessor, like TypeScript
 
     -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
@@ -114,6 +149,9 @@
     <script src="/js/directives/coverage.js"></script>
     <script src="/js/directives/stopwatch.js"></script>
     <script src="/js/controllers/coverage.js"></script>
+    <script src="/js/controllers/dogs.js"></script>
+    <script src="/js/controllers/locations.js"></script>
+    <script src="/js/services/locations.js"></script>
     <!--SCRIPTS END-->
 
   </body>

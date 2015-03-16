@@ -3,7 +3,7 @@
 angular.module('plott')
   .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory',
     function ($scope, $http, $filter, $interval, TrackFactory) {
-      var map, config, sample;
+      var map, config, sample, mapController, timerController;
 
       // io.socket.get('/coverage/getWifi/');
 
@@ -12,7 +12,38 @@ angular.module('plott')
       map = L.mapbox.map('map', 'ctwhite.l4hma6jb', {
         zoomControl: false
       });
+
+      //Adds legend to map
       map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
+      //Adds maps controls
+      mapController = L.Control.extend({
+        options: {
+          position: 'topleft'
+        },
+
+        onAdd: function (map) {
+            var container = L.DomUtil.get('map-control');
+            return container;
+        }
+    });
+
+    map.addControl(new mapController());
+
+    //Adds timer to map
+    timerController = L.Control.extend({
+      options: {
+        position: 'topright'
+      },
+
+      onAdd: function (map) {
+          var container = L.DomUtil.get('timer');
+          return container;
+      }
+  });
+
+  map.addControl(new timerController());
+
       //Disable drag and zoom handlers
       map.dragging.disable();
       map.touchZoom.disable();
@@ -71,26 +102,6 @@ angular.module('plott')
         $scope.currentPos;
         $scope.isCollecting = track.getStatus();
         $scope.getTrack = function (){
-          // var locate = track.start();
-          // console.log(locate);
-          // locate.then(function(response){
-          //   console.log(response);
-          //   track.addPosition(response.data.features[0]);
-          //   $scope.currentPos = L.geoJson(response.data, {
-          //     pointToLayer: function (feature, latlng){
-          //       return L.circleMarker(latlng, {
-          //         fillColor: '#FF7400',
-          //         radius: 4,
-          //         color: '#FFB273',
-          //         weight: 1,
-          //         fillOpacity: 1
-          //       });
-          //     }
-          //   }).addTo(map);
-          // },
-          // function(err){
-          //   console.log(err);
-          // });
           track.setStatus(true);
           $scope.isCollecting = track.getStatus();
           $scope.tracksIntervalPromise = $interval(function(){

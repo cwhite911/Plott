@@ -28,7 +28,7 @@ module.exports = {
     state: {
       type: 'string',
       maxLength: 2
-    }
+    },
     zip: {
       type: 'integer'
     },

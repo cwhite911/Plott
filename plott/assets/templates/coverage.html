@@ -1,5 +1,5 @@
-<section class="map-container">
-  <nav class="map-nav">
+
+<div id="map-control" class="map-nav">
     <h1 class="text-center coverage-title">Wifi-Coverage Map</h1>
     <h2 class="text-center coverage-title">Track</h2>
     <div class="collect-button" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>
@@ -8,8 +8,16 @@
     <br>
     <h2 class="text-center coverage-title">Add Coverage Sample</h2>
     <toggle-switch ng-model="addSample"></toggle-switch>
-    <stop-watch status="isCollecting" class="timer" ng-show="isCollecting"></stop-watch>
-  </nav>
+
+</div>
+<stop-watch id="timer" status="isCollecting" class="timer" ng-show="isCollecting"></stop-watch>
+  <!-- <div  class="col-md-12 map-container"> -->
+    <!-- <main class="map-body"> -->
+      <!-- <div id="map"></div> -->
+      <!-- <leaflet center="ruffin" markers="markers" layers="layers"></leaflet> -->
+    <!-- </main> -->
+  <!-- </div> -->
+
   <div id='legend' class="legend-container" style='display:none;'>
   <strong>Wifi-Coverage</strong>
   <nav class='legend clearfix'>
@@ -26,8 +34,14 @@
     <small>Source: <a href="#link to source">Plott</a></small>
 </div>
 <coverage-data data="spotCoverage"></coverage-data>
-  <main class="map-body">
-    <div id="map"></div>
-    <!-- <leaflet center="ruffin" markers="markers" layers="layers"></leaflet> -->
-  </main>
-</section>
+
+<!-- </section> -->
+<!-- </div> -->
+
+<!-- <div class="container-fluid map-container">
+  <div class="row map-container">
+    <div class="col-md-12 map-container"> -->
+      <div id="map"></div>
+    <!-- </div>
+  </div>
+</div> -->
