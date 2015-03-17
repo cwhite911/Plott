@@ -4,4 +4,4 @@ angular.module('plott')
   .controller('locationsCtrl',
     function ($http) {
 
-    }]);
+    });
