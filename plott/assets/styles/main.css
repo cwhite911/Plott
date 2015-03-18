@@ -11,6 +11,10 @@ body {
   margin-left: 0 0;
 }
 
+.main-form-lables{
+  color: #fefefe;
+  font-style: bold;
+}
 /*.main-navbar {
   position: fixed;
   width: 100%;
