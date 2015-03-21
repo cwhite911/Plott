@@ -82,6 +82,20 @@ angular.module('plott')
           }
         });
 
+        $http.get('/tracks/fingerPrint').then(function(response){
+          console.log(response);
+          L.geoJson(response.data, {
+            pointToLayer: function (feature, latlng){
+              return L.circleMarker(latlng, {
+                fillColor: '#FF7400',
+                radius: 4,
+                color: '#FFB273',
+                weight: 1,
+                fillOpacity: 1
+              });
+            }
+          }).addTo(map);
+        });
 
         //Get heatmap data
         $http.get('/coverage/getHeatMap').then(function (response) {

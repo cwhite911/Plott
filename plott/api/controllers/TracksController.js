@@ -141,13 +141,107 @@ module.exports = {
 	},
 
 //WiFi Finger Printing technique
-	fingerPrint: function(res, req){
+	fingerPrint: function(req, res){
+		var inSignal,
+				score,
+				feature,
+				geojson = {
+  		"type": "FeatureCollection",
+  		"features": []
+		};
 		wifiscanner.scan(function(err, data){
 			if (err) {
 				console.log("Error : " + err);
 				return;
 			}
+
+			var fingerPrints =
+			Coverage.find({"data": {$in: data}}).exec(function findCB(err,found){
+					found.forEach(function(point){
+						getFingerPrintScores(data, point.data, function(score){
+							feature = JSON.parse(point.geom);
+							feature.properties.score = score;
+							geojson.features.push(feature);
+						});
+
+					});
+					res.json(geojson);
+				});
+		});
+		// res.send(inSignal);
 	}
 
 
 };
+
+
+function getFingerPrintScores(inArray, refArray, callback){
+	var fingerPrint = 0,
+			apScore;
+
+		//Find the differenct between each access point in array
+		inArray.forEach(function(ap){
+			refArray.forEach(function(ref){
+				if (ap.mac === ref.mac && ap.channel === ref.channel){
+					apScore = Math.abs(ap.signal_level - ref.signal_level);
+						console.log(apScore);
+					//Add all collected scores
+					fingerPrint+= apScore;
+				}
+			});
+		});
+		callback(fingerPrint);
+}
+
+
+
+// [
+//     {
+//         "ssid": "ruffin",
+//         "mac": "00:1d:7e:a1:a6:d3",
+//         "signal_level": -84.5, -80
+//         "channel": "1"
+//     },
+//     {
+//         "ssid": "bates",
+//         "mac": "0a:18:d6:53:73:7c",
+//         "signal_level": -54.5,
+//         "channel": "11"
+//     },
+//     {
+//         "ssid": "bates",
+//         "mac": "0a:18:d6:53:73:dc",
+//         "signal_level": -74.5,
+//         "channel": "1"
+//     },
+//     {
+//         "ssid": "Chobey",
+//         "mac": "c8:d7:19:3b:db:ff",
+//         "signal_level": -74.5,
+//         "channel": "2"
+//     },
+//     {
+//         "ssid": "Chobey",
+//         "mac": "c8:d7:19:3b:dc:00",
+//         "signal_level": -81,
+//         "channel": "149"
+//     },
+//     {
+//         "ssid": "Chobey",
+//         "mac": "0e:18:d6:53:73:7c",
+//         "signal_level": -50.5,
+//         "channel": "11"
+//     },
+//     {
+//         "ssid": "Chobey",
+//         "mac": "0e:18:d6:53:73:dc",
+//         "signal_level": -73.5,
+//         "channel": "1"
+//     },
+//     {
+//         "ssid": "cjnc225",
+//         "mac": "40:4a:03:eb:70:20",
+//         "signal_level": -85,
+//         "channel": "11"
+//     }
+// ]
