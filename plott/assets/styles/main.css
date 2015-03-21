@@ -12,7 +12,7 @@ body {
 }
 
 .main-form-lables{
-  color: #fefefe;
+  color: #F5E8C4;
   font-style: bold;
 }
 /*.main-navbar {
@@ -31,3 +31,9 @@ body {
   padding-left: 15px;
   color: #008678;
 }*/
+#customNav {
+  background: #352A00;
+}
+.navbar-inverse {
+  background: #352A00;
+}

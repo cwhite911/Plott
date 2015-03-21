@@ -7,8 +7,11 @@
 var wifiscanner = require('node-wifiscanner'),
 		trilateration = require('trilateration'),
 		transform = require('proj4geojson'),
+
 		//EPSG:2264 proj4 http://spatialreference.org/ref/epsg/2264/
 		sr = '+proj=lcc +lat_1=36.16666666666666 +lat_2=34.33333333333334 +lat_0=33.75 +lon_0=-79 +x_0=609601.2192024384 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs';
+
+		//Known exact locatoins of access points
 		knownAPs = [
 			{
 				name: 'Bates',
@@ -74,7 +77,8 @@ function signalToDistance (m, p){
 }
 
 module.exports = {
-	// var spotInfo;
+
+	// Using trilateration technique;
 	signalToPoint: function (req, res){
 		var geojson = {
   		"type": "FeatureCollection",
@@ -134,7 +138,16 @@ module.exports = {
 		wgs84geojson = transform.to(geojson, sr);
 		//Sends the response geojson
 		res.json(wgs84geojson);
-	}
-};
+	},
 
-// X: 776.7500702247191; Y: 405.5078133102853
+//WiFi Finger Printing technique
+	fingerPrint: function(res, req){
+		wifiscanner.scan(function(err, data){
+			if (err) {
+				console.log("Error : " + err);
+				return;
+			}
+	}
+
+
+};
