@@ -24,7 +24,8 @@
     "sails-mongo": "~0.10.5",
     "eqsolver": "0.0.5",
     "trilateration": "0.0.1",
-    "proj4geojson": "~0.2.0"
+    "proj4geojson": "~0.2.0",
+    "underscore": "~1.8.2"
   },
   "name": "plott",
   "private": true,

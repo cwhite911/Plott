@@ -82,20 +82,135 @@ angular.module('plott')
           }
         });
 
-        $http.get('/tracks/fingerPrint').then(function(response){
-          console.log(response);
-          L.geoJson(response.data, {
-            pointToLayer: function (feature, latlng){
-              return L.circleMarker(latlng, {
-                fillColor: '#FF7400',
-                radius: 4,
-                color: '#FFB273',
-                weight: 1,
-                fillOpacity: 1
-              });
+
+        function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+
+    $scope.score = layer.feature.properties.score;
+    console.log($scope.score);
+}
+
+function weigthedMean(fc, callback){
+  var newX,
+      newY,
+      coords,
+      topSumX = 0,
+      topSumY = 0,
+      wieghtMeanSum = 1;
+      fc = fc.features;
+  for (var i = 0, len= fc.length; i < len; i++){
+      coords = fc[i].geometry.coordinates;
+      switch(i){
+        case 0:
+          //Calculate x
+          topSumX+=(.50 * coords[0]);
+
+          //Calculate y
+          topSumY+=(.50 * coords[1]);
+          break;
+        case 1:
+          //Calculate x
+          topSumX+=(.25 * coords[0]);
+
+          //Calculate y
+          topSumY+=(.25 * coords[1]);
+          break;
+        case 2:
+          //Calculate x
+          topSumX+=(.15 * coords[0]);
+
+          //Calculate y
+          topSumY+=(.15 * coords[1]);
+          break;
+        case 3:
+          //Calculate x
+          topSumX+=(.08 * coords[0]);
+
+          //Calculate y
+          topSumY+=(.08 * coords[1]);
+          break;
+        case 4:
+          //Calculate x
+          topSumX+=(.02 * coords[0]);
+
+          //Calculate y
+          topSumY+=(.02 * coords[1]);
+          break;
+        default:
+          console.log('Whoops something did not work');
+      }
+  }
+
+  //Divide by total weight
+
+  newX = (topSumX / wieghtMeanSum).toFixed(15);
+  newY = (topSumY / wieghtMeanSum).toFixed(15);
+
+  //Set callback to return estimated latlng
+  callback([newY, newX]);
+
+}
+        //Gets current position using WiFi finger printing.
+        $scope.fingerPoint;
+        $http.get('/tracks/fingerPrint', {cache: false}).then(function(response){
+          response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
+          weigthedMean(response.data, function(latLng){
+            if(!$scope.fingerPoint){
+              $scope.fingerPoint = L.marker(latLng);
+              // map.panTo(point.getLatLng());
+              $scope.fingerPoint.addTo(map);
             }
-          }).addTo(map);
+            $scope.fingerPoint.setLatLng(latLng);
+            $scope.fingerPoint.update();
+
+          });
         });
+        // $http.get('/tracks/fingerPrint').then(function(response){
+        //
+        //   $scope.fingerPoint = undefined;
+        //   response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
+        //   console.log(response.data);
+        //   var bestGuess = weigthedMean(response.data, function(point){
+        //     $scope.fingerPoint = point;
+        //     // map.panTo(point.getLatLng());
+        //     $scope.fingerPoint.addTo(map);
+        //   });
+        //
+        //   L.geoJson(response.data, {
+        //     pointToLayer: function (feature, latlng){
+        //       return L.circleMarker(latlng, {
+        //         fillColor: '#FF7400',
+        //         radius: 4,
+        //         color: '#FFB273',
+        //         weight: 1,
+        //         fillOpacity: 1
+        //       });
+        //     },
+        //     onEachFeature: function(feature, layer){
+        //       layer.on({
+        //         mouseover: highlightFeature,
+        //         // click: zoomToFeature
+        //     });
+        //       // layer.bindPopup(feature.properties.score);
+        //       // console.log(feature.properties.score);
+        //     }
+        //   }).addTo(map);
+        //
+        //   var tin = turf.tin(response.data, 'score');
+        //
+        //   L.geoJson(tin).addTo(map);
+        // });
 
         //Get heatmap data
         $http.get('/coverage/getHeatMap').then(function (response) {
@@ -119,6 +234,8 @@ angular.module('plott')
           track.setStatus(true);
           $scope.isCollecting = track.getStatus();
           $scope.tracksIntervalPromise = $interval(function(){
+
+
             track.getPosition().then(function(response){
               track.addPosition(response.data.features[0]);
               $scope.currentPos = L.geoJson(response.data, {

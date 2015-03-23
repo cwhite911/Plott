@@ -15,7 +15,8 @@
     "mapbox.js": "~2.1.5",
     "heatmap.js": "~0.0.1",
     "angular-toggle-switch": "~1.2.1",
-    "bootstrap": "~3.3.2"
+    "bootstrap": "~3.3.2",
+    "turf": "~2.0.0"
   },
   "name": "plott",
   "version": "0.0.0",

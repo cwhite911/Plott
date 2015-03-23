@@ -7,6 +7,7 @@
 var wifiscanner = require('node-wifiscanner'),
 		trilateration = require('trilateration'),
 		transform = require('proj4geojson'),
+						_ = require('underscore'),
 
 		//EPSG:2264 proj4 http://spatialreference.org/ref/epsg/2264/
 		sr = '+proj=lcc +lat_1=36.16666666666666 +lat_2=34.33333333333334 +lat_0=33.75 +lon_0=-79 +x_0=609601.2192024384 +y_0=0 +ellps=GRS80 +datum=NAD83 +to_meter=0.3048006096012192 +no_defs';
@@ -160,10 +161,10 @@ module.exports = {
 					found.forEach(function(point){
 						getFingerPrintScores(data, point.data, function(score){
 							feature = JSON.parse(point.geom);
-							feature.properties.score = score;
+							feature.properties = score;
 							geojson.features.push(feature);
 						});
-
+						// geojson.features = _.min(geojson.features, 'feature.properites.score');
 					});
 					res.json(geojson);
 				});
@@ -176,17 +177,22 @@ module.exports = {
 
 
 function getFingerPrintScores(inArray, refArray, callback){
-	var fingerPrint = 0,
+	var fingerPrint = {
+			score: 0,
+			total: inArray.length,
+			matches: 0
+		},
 			apScore;
 
 		//Find the differenct between each access point in array
 		inArray.forEach(function(ap){
 			refArray.forEach(function(ref){
 				if (ap.mac === ref.mac && ap.channel === ref.channel){
+					fingerPrint.matches++;
 					apScore = Math.abs(ap.signal_level - ref.signal_level);
 						console.log(apScore);
 					//Add all collected scores
-					fingerPrint+= apScore;
+					fingerPrint.score+= apScore;
 				}
 			});
 		});
