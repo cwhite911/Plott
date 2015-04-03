@@ -11,7 +11,8 @@
 angular
   .module('plott', [
     'ngRoute',
-    'toggle-switch'
+    'toggle-switch',
+    'angularFileUpload'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $routeProvider

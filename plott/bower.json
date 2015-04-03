@@ -16,7 +16,8 @@
     "heatmap.js": "~0.0.1",
     "angular-toggle-switch": "~1.2.1",
     "bootstrap": "~3.3.2",
-    "turf": "~2.0.0"
+    "turf": "~2.0.0",
+    "ng-file-upload": "~3.2.4"
   },
   "name": "plott",
   "version": "0.0.0",
