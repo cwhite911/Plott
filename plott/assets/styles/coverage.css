@@ -1,4 +1,3 @@
-
 html, body {
   height: 100%;
   margin: 0 0;
@@ -9,30 +8,26 @@ html, body {
 .map-container {
   width: 100%;
   height: 100%;
-
 }
-
 .map-nav {
   /*position: relative;*/
+  
   width: 100%;
-
   /*float: left;*/
   /*height: 100%;
   width: 100%;*/
   /*background: #083A35;*/
 }
-
 .map-body {
   /*position: relative;*/
+  
   width: 100%;
   height: 100%;
 }
-
 #map {
   width: 100%;
   height: 100%;
 }
-
 .coverage-title {
   color: #7EC800;
 }
@@ -42,17 +37,15 @@ html, body {
 .map-legends .map-legend {
   /*background: rgba(0, 0, 0, 0.45);*/
 }
-.legend label,
-.legend span {
-  display:block;
-  float:left;
-  height:15px;
-  width:20%;
-  text-align:center;
-  font-size:9px;
-  color:#7EC800;
+.legend label, .legend span {
+  display: block;
+  float: left;
+  height: 15px;
+  width: 20%;
+  text-align: center;
+  font-size: 9px;
+  color: #7EC800;
 }
-
 .coverage-details {
   position: fixed;
   top: 10%;
@@ -61,25 +54,21 @@ html, body {
   background: rgba(0, 0, 0, 0);
   border: rgba(0, 0, 0, 0);
   padding: 10px 5px;
-  z-index:2;
+  z-index: 2;
   height: 35%;
   width: 10%;
   overflow-y: auto;
 }
-
 .details-tbody {
   margin: 5px 2px;
   border: 1px rgba(96, 213, 35, 0.65) solid;
   padding: 2px 2px;
 }
-
 .coverage-details table tbody {
   margin: 5px 2px;
   border: 1px rgba(96, 213, 35, 0.65) solid;
   padding: 2px 2px;
 }
-
-
 /*.coverage-details table tbody {
     line-height: 0;
     font-size: 0;
@@ -96,19 +85,22 @@ html, body {
 ::-webkit-scrollbar {
   width: 15px;
 }
-
 ::-webkit-scrollbar-track {
   background-color: #4f4949;
-  } /* the new scrollbar will have a flat appearance with the set background color */
+}
+/* the new scrollbar will have a flat appearance with the set background color */
 
-  ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0.2);
-    } /* this will style the thumb, ignoring the track */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+/* this will style the thumb, ignoring the track */
 
-    ::-webkit-scrollbar-button {
-      background-color: #7c2929;
-      } /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+::-webkit-scrollbar-button {
+  background-color: #7c2929;
+}
+/* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
 
-      ::-webkit-scrollbar-corner {
-        background-color: black;
-        } /* if both the vertical and the
+::-webkit-scrollbar-corner {
+  background-color: black;
+}
+/* if both the vertical and the

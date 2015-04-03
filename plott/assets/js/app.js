@@ -26,10 +26,10 @@ angular
         templateUrl: '../templates/locations.html',
         controller: 'locationsCtrl'
       })
-      // .when('/dogs', {
-      //   templateUrl: '../templates/dogs.html',
-      //   controller: 'dogsCtrl'
-      // })
+      .when('/dogs', {
+        templateUrl: '../templates/dogs.html',
+        controller: 'dogsCtrl'
+      })
       // .when('/error', {
       //   templateUrl: '404.html'
       // })

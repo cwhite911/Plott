@@ -4,16 +4,15 @@
   display: block;
   margin: 0 auto;
   width: 25%;*/
+  
   -vendor-animation-duration: 3s;
   margin: 200px 0;
 }
-
 .locations-img {
   margin: 200px 0;
   /*height: 200px;
   width: 200px;*/
 }
-
-.locations-jubom{
+.locations-jubom {
   text-align: center;
 }

@@ -5,48 +5,47 @@
   position: relative;
   margin: 0 auto;
   text-align: center;
-   background: #007ccf;
-   width: 50%;
-   padding: 5px 10px;
-   -webkit-border-radius: 16px;
-   -moz-border-radius: 16px;
-   border-radius: 16px;
-   color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
-   text-decoration: none;
-   vertical-align: middle;
+  background: #007ccf;
+  width: 50%;
+  padding: 5px 10px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  color: white;
+  font-size: 14px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
 }
 .collect-button:hover {
-   background: #28597a;
-   color: #ccc;
-   cursor: pointer;
+  background: #28597a;
+  color: #ccc;
+  cursor: pointer;
 }
 .collect-button:active {
-   background: #1b435e;
+  background: #1b435e;
 }
-
 .stop-button {
   position: relative;
   margin: 0 auto;
   text-align: center;
-   background: #d10d00;
-   width: 50%;
-   padding: 5px 10px;
-   -webkit-border-radius: 16px;
-   -moz-border-radius: 16px;
-   border-radius: 16px;
-   color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
-   text-decoration: none;
-   vertical-align: middle;
+  background: #d10d00;
+  width: 50%;
+  padding: 5px 10px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  border-radius: 16px;
+  color: white;
+  font-size: 14px;
+  font-family: Georgia, serif;
+  text-decoration: none;
+  vertical-align: middle;
 }
 .stop-button:hover {
-   background: #7b3328;
-   color: #ccc;
-   cursor: pointer;
+  background: #7b3328;
+  color: #ccc;
+  cursor: pointer;
 }
 .stop-button:active {
-   background: #5e2e1a;
+  background: #5e2e1a;
 }

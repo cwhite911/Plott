@@ -6,12 +6,10 @@ body {
   -o-background-size: cover;
   background-size: cover;
 }
-
 .row {
   margin-left: 0 0;
 }
-
-.main-form-lables{
+.main-form-lables {
   color: #F5E8C4;
   font-style: bold;
 }
@@ -31,6 +29,7 @@ body {
   padding-left: 15px;
   color: #008678;
 }*/
+
 #customNav {
   background: #352A00;
 }
