@@ -19,6 +19,10 @@ angular
       .when('/', {
         templateUrl: '../templates/index.html',
       })
+      .when('/register', {
+        templateUrl: '../templates/register.html',
+        controller: 'registerCtrl'
+      })
       .when('/coverage', {
         templateUrl: '../templates/coverage.html',
         controller: 'coverageCtrl'
