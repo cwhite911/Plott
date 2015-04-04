@@ -1,10 +1,12 @@
 'use strict';
 
 angular.module('plott')
-  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory',
-    function ($scope, $http, $filter, $interval, TrackFactory) {
+  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory', 'FingerprintFactory',
+    function ($scope, $http, $filter, $interval, TrackFactory, FingerprintFactory) {
       var map, config, sample, mapController, timerController;
 
+      var track = new TrackFactory();
+      var finger = new FingerprintFactory();
       // io.socket.get('/coverage/getWifi/');
 
       L.mapbox.accessToken = 'pk.eyJ1IjoiY3R3aGl0ZSIsImEiOiJvVTRNU3NFIn0.dQWbo15StntDe01rdlDjfQ';
@@ -101,71 +103,12 @@ angular.module('plott')
     console.log($scope.score);
 }
 
-function weigthedMean(fc, callback){
-  var newX,
-      newY,
-      coords,
-      topSumX = 0,
-      topSumY = 0,
-      wieghtMeanSum = 1;
-      fc = fc.features;
-  for (var i = 0, len= fc.length; i < len; i++){
-      coords = fc[i].geometry.coordinates;
-      switch(i){
-        case 0:
-          //Calculate x
-          topSumX+=(.50 * coords[0]);
 
-          //Calculate y
-          topSumY+=(.50 * coords[1]);
-          break;
-        case 1:
-          //Calculate x
-          topSumX+=(.25 * coords[0]);
-
-          //Calculate y
-          topSumY+=(.25 * coords[1]);
-          break;
-        case 2:
-          //Calculate x
-          topSumX+=(.15 * coords[0]);
-
-          //Calculate y
-          topSumY+=(.15 * coords[1]);
-          break;
-        case 3:
-          //Calculate x
-          topSumX+=(.08 * coords[0]);
-
-          //Calculate y
-          topSumY+=(.08 * coords[1]);
-          break;
-        case 4:
-          //Calculate x
-          topSumX+=(.02 * coords[0]);
-
-          //Calculate y
-          topSumY+=(.02 * coords[1]);
-          break;
-        default:
-          console.log('Whoops something did not work');
-      }
-  }
-
-  //Divide by total weight
-
-  newX = (topSumX / wieghtMeanSum).toFixed(15);
-  newY = (topSumY / wieghtMeanSum).toFixed(15);
-
-  //Set callback to return estimated latlng
-  callback([newY, newX]);
-
-}
         //Gets current position using WiFi finger printing.
         $scope.fingerPoint;
         $http.get('/tracks/fingerPrint', {cache: false}).then(function(response){
           response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
-          weigthedMean(response.data, function(latLng){
+          finger.weigthedMean(response.data, function(latLng){
             if(!$scope.fingerPoint){
               $scope.fingerPoint = L.marker(latLng);
               // map.panTo(point.getLatLng());
@@ -214,7 +157,6 @@ function weigthedMean(fc, callback){
 
         //Get heatmap data
         $http.get('/coverage/getHeatMap').then(function (response) {
-          console.log(response.data.length);
           var heat = L.heatLayer(response.data, {
             minOpacity: 0.2,
             radius: 100,
@@ -226,7 +168,7 @@ function weigthedMean(fc, callback){
           console.log(err);
         });
 
-        var track = new TrackFactory();
+
 
         $scope.currentPos;
         $scope.isCollecting = track.getStatus();
@@ -235,7 +177,7 @@ function weigthedMean(fc, callback){
           $scope.isCollecting = track.getStatus();
           $scope.tracksIntervalPromise = $interval(function(){
 
-
+            //Trilateration Method/////////////////////////////////////////////////////////////
             track.getPosition().then(function(response){
               track.addPosition(response.data.features[0]);
               $scope.currentPos = L.geoJson(response.data, {
@@ -253,6 +195,9 @@ function weigthedMean(fc, callback){
             function(err){
               console.log(err);
             });
+
+            //////////////////////////////////////////////////////////////////////////////
+
           }, 250);
         };
 
