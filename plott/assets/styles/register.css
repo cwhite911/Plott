@@ -1,3 +1,9 @@
 #regForm{
   width: 25%;
 }
+
+#tile-reg {
+  background-color: rgba(52, 39, 0, 0.9);
+  margin-top:25%;
+
+}

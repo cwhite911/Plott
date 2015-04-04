@@ -6,13 +6,17 @@ angular.module('plott')
 
       $scope.dog = {};
 
-      $scope.dog.breed = 'Select a breed';
+
+
       $scope.breeds;
       $scope.fileName;
       //Get dog breets for selections
       $http.get('/breeds')
         .success(function(res){
+
           $scope.breeds = res;
+          $scope.breeds.unshift({name: 'Select a breed'});
+          $scope.dog.breed = $scope.breeds[0]; //{name: 'Select a breed'};
         })
         .error(function(err){
           console.log(err);
