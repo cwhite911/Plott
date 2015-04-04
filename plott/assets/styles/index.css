@@ -1,0 +1,17 @@
+#tile{
+  background-color: rgba(52, 39, 0, 0.9);
+  margin-top: 0;
+}
+
+#subtile{
+  background-color: rgba(50, 35, 0, 0.75);
+  margin-top: 0;
+}
+
+.logo{
+  height: 200px;
+  width: 200px;
+  display: block;
+  margin: 0 auto 15px auto;
+
+}
