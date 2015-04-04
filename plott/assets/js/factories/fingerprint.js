@@ -49,12 +49,20 @@ angular.module('plott')
       },
 
       //getPostion of Target Device returns promise
-      getPosition: function(){
+      getPosition: function(method){
         status = true;
-        return   $http.get('/tracks/fingerPrint', {cache: false});
+        if (method === 'trilateration'){
+          return $http.get('/tracks/signalToPoint');
+        }
+        else{
+          return $http.get('/tracks/fingerPrint', {cache: false});
+        }
+
       },
 
-      save: function(){},
+      save: function(){
+
+      },
       getAll: function(){},
       findOne: function(){},
       findGroup: function(){},

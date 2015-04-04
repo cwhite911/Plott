@@ -85,40 +85,29 @@ angular.module('plott')
         });
 
 
-        function highlightFeature(e) {
-    var layer = e.target;
 
-    layer.setStyle({
-        weight: 5,
-        color: '#666',
-        dashArray: '',
-        fillOpacity: 0.7
-    });
-
-    if (!L.Browser.ie && !L.Browser.opera) {
-        layer.bringToFront();
-    }
-
-    $scope.score = layer.feature.properties.score;
-    console.log($scope.score);
-}
 
 
         //Gets current position using WiFi finger printing.
-        $scope.fingerPoint;
-        $http.get('/tracks/fingerPrint', {cache: false}).then(function(response){
-          response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
-          finger.weigthedMean(response.data, function(latLng){
-            if(!$scope.fingerPoint){
-              $scope.fingerPoint = L.marker(latLng);
-              // map.panTo(point.getLatLng());
-              $scope.fingerPoint.addTo(map);
-            }
-            $scope.fingerPoint.setLatLng(latLng);
-            $scope.fingerPoint.update();
+        // $scope.fingerPoint;
+        // finger.getPosition().then(function(response){
+        //   response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
+        //   finger.weigthedMean(response.data, function(latLng){
+        //     if(!$scope.fingerPoint){
+        //       $scope.fingerPoint = L.marker(latLng);
+        //       // map.panTo(point.getLatLng());
+        //       $scope.fingerPoint.addTo(map);
+        //     }
+        //     $scope.fingerPoint.setLatLng(latLng);
+        //     $scope.fingerPoint.update();
+        //
+        //   });
+        // });
 
-          });
-        });
+
+
+
+
         // $http.get('/tracks/fingerPrint').then(function(response){
         //
         //   $scope.fingerPoint = undefined;
@@ -155,7 +144,7 @@ angular.module('plott')
         //   L.geoJson(tin).addTo(map);
         // });
 
-        //Get heatmap data
+        //Get heatmap data//////////////////////////////////////////////////////////////////////////////////////////////
         $http.get('/coverage/getHeatMap').then(function (response) {
           var heat = L.heatLayer(response.data, {
             minOpacity: 0.2,
@@ -168,17 +157,57 @@ angular.module('plott')
           console.log(err);
         });
 
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         $scope.currentPos;
         $scope.isCollecting = track.getStatus();
+
+
         $scope.getTrack = function (){
+          $scope.fingerLine;
+          $scope.latLngs = [];
           track.setStatus(true);
           $scope.isCollecting = track.getStatus();
           $scope.tracksIntervalPromise = $interval(function(){
 
+            //FingerPrint Method//////////////////////////////////////////////////////////////////
+            $scope.fingerPoint;
+
+            finger.getPosition().then(function(response){
+              response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
+              finger.weigthedMean(response.data, function(latLng){
+                if(!$scope.fingerPoint){
+                  console.log(latLng);
+                  $scope.fingerPoint = L.marker(latLng);
+                  $scope.fingerPoint.addTo(map);
+                  // map.panTo(point.getLatLng());
+                }
+                else{
+                  //Update marker location
+                  $scope.fingerPoint.setLatLng(latLng);
+                  $scope.fingerPoint.update();
+                }
+
+                //Add path to maps
+                if ($scope.latLngs.length < 2){
+                  $scope.latLngs.push($scope.fingerPoint.getLatLng());
+                }
+                else if ($scope.latLngs.length === 2){
+                  $scope.fingerLine = L.polyline($scope.latLngs, {color: 'red', dashArray: '15, 10, 5, 10'}).addTo(map);
+                  $scope.latLngs.push($scope.fingerPoint.getLatLng());
+                }
+                else{
+                  //Add new point to line
+                  $scope.fingerLine.addLatLng(latLng);
+                }
+
+              });
+            });
+
+            ////////////////////////////////////////////////////////////////////////////////////////////
+
             //Trilateration Method/////////////////////////////////////////////////////////////
-            track.getPosition().then(function(response){
+            finger.getPosition('trilateration').then(function(response){
               track.addPosition(response.data.features[0]);
               $scope.currentPos = L.geoJson(response.data, {
                 pointToLayer: function (feature, latlng){
