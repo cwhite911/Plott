@@ -1,15 +1,5 @@
 
-<div id="map-control" class="map-nav animated fadeIn">
-    <h1 class="text-center coverage-title">Wifi-Coverage Map</h1>
-    <h2 class="text-center coverage-title">Track</h2>
-    <div class="collect-button" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>
-    <div class="stop-button" ng-click="stopTrack()" ng-show="isCollecting">Stop Tracking</div>
-    <div class="save-button" ng-click="saveTrack()" ng-show="isCollecting">Save Track</div>
-    <br>
-    <h2 class="text-center coverage-title">Add Coverage Sample</h2>
-    <toggle-switch ng-model="addSample"></toggle-switch>
 
-</div>
 <stop-watch id="timer" status="isCollecting" class="timer" ng-show="isCollecting"></stop-watch>
   <!-- <div  class="col-md-12 map-container"> -->
     <!-- <main class="map-body"> -->
@@ -33,15 +23,34 @@
     <label>100%</label>
     <small>Source: <a href="#link to source">Plott</a></small>
 </div>
-<coverage-data data="spotCoverage"></coverage-data>
+<coverage-data id="coverage-data" data="spotCoverage"></coverage-data>
 
 <!-- </section> -->
 <!-- </div> -->
 
-<!-- <div class="container-fluid map-container">
+<div class="container-fluid map-container">
   <div class="row map-container">
-    <div class="col-md-12 map-container"> -->
+    <div class="col-md-3">
+      <div class="jumbotron" id="tile-coverage">
+        <img class="img-circle coverage-pic" src="../images/plott-logo-black/scaled-at-25/white-text.png" alt="plott"/>
+        <div id="map-control" class="map-nav animated fadeIn">
+          <select ng-options="" ng-model="selectedLocation"></select>
+          <select ng-options="" ng-model="selectedDog"></select>
+          <select ng-options="" ng-model="selectedHide"></select>
+            <h2 class="text-center coverage-title">Wifi-Coverage Map</h2>
+
+            <h2 class="text-center coverage-title">Track</h2>
+            <div class="btn btn-primary center-block" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>
+            <div class="btn btn-danger center-block" ng-click="stopTrack()" ng-show="isCollecting">Stop Tracking</div>
+            <div class="btn btn-success center-block" ng-click="saveTrack()" ng-show="isCollecting">Save Track</div>
+            <br>
+            <h2 class="text-center coverage-title">Add Coverage Sample</h2>
+            <toggle-switch ng-model="addSample"></toggle-switch>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9 map-container">
       <div id="map"></div>
-    <!-- </div>
+    </div>
   </div>
-</div> -->
+</div>

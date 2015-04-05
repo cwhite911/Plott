@@ -25,7 +25,7 @@ angular.module('plott')
         },
 
         onAdd: function (map) {
-            var container = L.DomUtil.get('map-control');
+            var container = L.DomUtil.get('coverage-data');
             return container;
         }
     });

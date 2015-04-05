@@ -6,34 +6,43 @@
 */
 
 module.exports = {
+  // Define a custom table name
+  tableName: 'tbl_dogs',
 
-  // attributes: {
-  //   _id: {
-  //     type: 'integer',
-  //     unique: true
-  //   },
-  //   name: {
-  //     type: 'string'
-  //   },
-  //   nickname: {
-  //     type: 'string'
-  //   },
-  //   breed: {
-  //     collection: 'breeds',
-  //     via: 'breed'
-  //   },
-  //   training: {
-  //     type: 'integer'
-  //   },
-  //   group: {
-  //     type: 'string'
-  //   },
-  //   tracks: {
-  //     collection: 'tracks',
-  //     via: 'dog'
-  //   },
-  //   owner: {
-  //     model: 'owners'
-  //   }
-  // }
+  // Set schema true/false for adapters that support schemaless
+  schema: true,
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+  autoPK: false,
+  attributes: {
+    id: {
+      type: 'integer',
+      columnName: 'dogid',
+      autoIncrement: true
+    },
+    name: {
+      type: 'string',
+      maxLength: 100,
+      columnName: 'name'
+    },
+    nickname: {
+      type: 'string',
+      maxLength: 100,
+      columnName: 'nickname'
+    },
+    breedid: {
+      type: 'string',
+      maxLength: 10,
+      columnName: 'breedid'
+    },
+    training: {
+      type: 'integer',
+      columnName: 'training'
+    },
+    ownerid: {
+      type: 'integer',
+      columnName: 'ownerid'
+    }
+  }
+
 };

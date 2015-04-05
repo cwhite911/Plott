@@ -6,24 +6,32 @@
 */
 
 module.exports = {
-  //
-  // attributes: {
-  //   _id: {
-  //     type: 'integer',
-  //   },
-  //   dog: {
-  //     model: 'dogs'
-  //   },
-  //   hides: {
-  //     collection: 'hides',
-  //     via: 'set'
-  //   },
-  //   startTime: {
-  //     type: 'datetime'
-  //   },
-  //   endTime: {
-  //     type: 'datetime'
-  //   },
-  //   geom: 'object'
-  // }
+  // Define a custom table name
+  tableName: 'tbl_tracks',
+
+  // Set schema true/false for adapters that support schemaless
+  schema: true,
+  // autoPK: false,
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+  attributes: {
+    id: {
+      type: 'integer',
+      // unique: true,
+      // primaryKey: true,
+      columnName: 'trackid'
+    },
+    time: {
+      type: 'integer'
+    }
+    dogid: {
+      type: 'integer'
+    },
+    hideid: {
+      type: 'integer'
+    },
+    geojson: {
+      type: 'json'
+    }
+  }
 };

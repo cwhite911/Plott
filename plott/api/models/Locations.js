@@ -13,13 +13,16 @@ module.exports = {
   schema: true,
   autoCreatedAt: false,
   autoUpdatedAt: false,
-  autoPK: false,
+  // autoPK: false,
   attributes: {
     coordinates: {
       type: 'json'
     },
-    locationid: {
-      type: 'integer'
+    id: {
+      type: 'integer',
+      // unique: true,
+      // primaryKey: true,
+      columnName: 'locationid'
     },
     address: {
       type: 'string',
