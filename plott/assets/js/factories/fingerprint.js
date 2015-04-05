@@ -7,6 +7,10 @@ angular.module('plott')
     var status = false,
         tracksIntervalPromise;
 
+    function sum (a,b){
+      return a + b;
+    }
+
     //Track Constructor Class
     var Track = function (){
       this.trackid;
@@ -72,56 +76,38 @@ angular.module('plott')
             coords,
             topSumX = 0,
             topSumY = 0,
-            wieghtMeanSum = 1;
+            score,
+            weight,
+            sumNormalize = [],
+            wieghtMeanSum = 0;
             fc = fc.features;
+            var attr;
+
+        //Get the sum of the score to normalize
+        for (var i = 0, len= fc.length; i < len; i++){
+            sumNormalize.push(fc[i].properties.score);
+        }
+
+        //Get the sum of the scores;
+        var total = sumNormalize.reduce(function(a,b, i){
+          if (i < 5){
+            return a + b;
+          }
+        });
+
         for (var i = 0, len= fc.length; i < len; i++){
             coords = fc[i].geometry.coordinates;
-            switch(i){
-              case 0:
-                //Calculate x
-                topSumX+=(.50 * coords[0]);
+            score = fc[i].properties.score;
+            weight = (100 - ((score / total) * 100)).toFixed(2);
+            topSumX+=(weight * coords[0]);
+            topSumY+=(weight * coords[1]);
+            wieghtMeanSum+=parseFloat(weight);
 
-                //Calculate y
-                topSumY+=(.50 * coords[1]);
-                break;
-              case 1:
-                //Calculate x
-                topSumX+=(.25 * coords[0]);
-
-                //Calculate y
-                topSumY+=(.25 * coords[1]);
-                break;
-              case 2:
-                //Calculate x
-                topSumX+=(.15 * coords[0]);
-
-                //Calculate y
-                topSumY+=(.15 * coords[1]);
-                break;
-              case 3:
-                //Calculate x
-                topSumX+=(.08 * coords[0]);
-
-                //Calculate y
-                topSumY+=(.08 * coords[1]);
-                break;
-              case 4:
-                //Calculate x
-                topSumX+=(.02 * coords[0]);
-
-                //Calculate y
-                topSumY+=(.02 * coords[1]);
-                break;
-              default:
-                console.log('Whoops something did not work');
-            }
         }
 
         //Divide by total weight
-
         newX = (topSumX / wieghtMeanSum).toFixed(15);
         newY = (topSumY / wieghtMeanSum).toFixed(15);
-
         //Set callback to return estimated latlng
         callback([newY, newX]);
 
