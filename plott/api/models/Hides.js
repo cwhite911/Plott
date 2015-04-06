@@ -7,15 +7,26 @@
 
 module.exports = {
 
-  // attributes: {
-  //   _id: {
-  //     type: 'integer',
-  //   },
-  //   set: {
-  //     model: 'tracks'
-  //   },
-  //   geom: {
-  //
-  //   }
-  // }
+  // Define a custom table name
+  tableName: 'tbl_hides',
+
+  // Set schema true/false for adapters that support schemaless
+  schema: true,
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+  // autoPK: false,
+  attributes: {
+    id: {
+      type: 'integer',
+      // unique: true,
+      // primaryKey: true,
+      columnName: 'hideid'
+    },
+    locationid: {
+      type: 'integer',
+    },
+    geom: {
+
+    }
+  }
 };

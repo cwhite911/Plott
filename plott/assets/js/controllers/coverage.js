@@ -1,13 +1,45 @@
 'use strict';
 
 angular.module('plott')
-  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory', 'FingerprintFactory',
-    function ($scope, $http, $filter, $interval, TrackFactory, FingerprintFactory) {
+  .controller('coverageCtrl', ['$scope', '$http', '$filter', '$interval', 'TrackFactory', 'FingerprintFactory', 'selectionsFactory',
+    function ($scope, $http, $filter, $interval, TrackFactory, FingerprintFactory, selectionsFactory) {
       var map, config, sample, mapController, timerController;
 
       var track = new TrackFactory();
       var finger = new FingerprintFactory();
-      // io.socket.get('/coverage/getWifi/');
+
+
+      selectionsFactory.owners().then(function(res){
+        $scope.owners = res;
+        $scope.owners.unshift({name: 'Select an Owner'});
+        $scope.selectedOwner = $scope.owners[0];
+      });
+
+      selectionsFactory.locations().then(function(res){
+        $scope.locations = res;
+        $scope.locations.unshift({address: 'Select a Location'});
+        $scope.selectedLocation = $scope.locations[0];
+      });
+
+      $scope.ownerid = {ownerid: 1};
+
+    $scope.getDogs= function(ownerid){
+      selectionsFactory.dogs(ownerid).then(function(res){
+        $scope.dogs = res;
+        $scope.dogs.unshift({name: 'Select a Dog'});
+        $scope.selectedDog = $scope.dogs[0];
+      });
+    };
+
+
+      // selectionsFactory.hides().then(function(res){
+      //   $scope.hides = res;
+      //   $scope.hides.unshift({name: 'Select a Hide'});
+      //   $scope.selectedHide = $scope.hides[0];
+      // });
+
+
+
 
       L.mapbox.accessToken = 'pk.eyJ1IjoiY3R3aGl0ZSIsImEiOiJvVTRNU3NFIn0.dQWbo15StntDe01rdlDjfQ';
       // Create a map in the div #map

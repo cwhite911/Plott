@@ -22,8 +22,6 @@ angular.module('plott')
           console.log(data);
           delete data.format;
           data.locationid = 2;
-          // data.id = 1;
-          // data.geom = 'GEOMETRY(POINT(' + point[0].lon + ' ' + point[0].lat + '), 4326)';
           data.coordinates = {lat: parseFloat(point[0].lat), lng: parseFloat(point[0].lon)};
           var config = {
             url: '/locations/create',

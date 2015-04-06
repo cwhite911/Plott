@@ -34,9 +34,11 @@
       <div class="jumbotron" id="tile-coverage">
         <img class="img-circle coverage-pic" src="../images/plott-logo-black/scaled-at-25/white-text.png" alt="plott"/>
         <div id="map-control" class="map-nav animated fadeIn">
-          <select ng-options="" ng-model="selectedLocation"></select>
-          <select ng-options="" ng-model="selectedDog"></select>
+          <select ng-options="loc.address for loc in locations" ng-model="selectedLocation"></select>
           <select ng-options="" ng-model="selectedHide"></select>
+          <select ng-show="selectedLocation.address !== 'Select a Location'" ng-options="owner.name for owner in owners" ng-model="selectedOwner" ng-change="getDogs(selectedOwner.ownerid)"></select>
+          <select ng-options="dog.name for dog in dogs" ng-model="selectedDog"></select>
+
             <h2 class="text-center coverage-title">Wifi-Coverage Map</h2>
 
             <h2 class="text-center coverage-title">Track</h2>

@@ -23,7 +23,7 @@ module.exports = {
     },
     time: {
       type: 'integer'
-    }
+    },
     dogid: {
       type: 'integer'
     },

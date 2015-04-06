@@ -23,6 +23,10 @@ angular
         templateUrl: '../templates/register.html',
         controller: 'registerCtrl'
       })
+      .when('/login', {
+        templateUrl: '../templates/login.html',
+        controller: 'loginCtrl'
+      })
       .when('/coverage', {
         templateUrl: '../templates/coverage.html',
         controller: 'coverageCtrl'
