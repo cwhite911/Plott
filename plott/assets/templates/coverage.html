@@ -34,12 +34,25 @@
       <div class="jumbotron" id="tile-coverage">
         <img class="img-circle coverage-pic" src="../images/plott-logo-black/scaled-at-25/white-text.png" alt="plott"/>
         <div id="map-control" class="map-nav animated fadeIn">
-          <select ng-options="loc.address for loc in locations" ng-model="selectedLocation"></select>
-          <select ng-options="" ng-model="selectedHide"></select>
-          <select ng-show="selectedLocation.address !== 'Select a Location'" ng-options="owner.name for owner in owners" ng-model="selectedOwner" ng-change="getDogs(selectedOwner.ownerid)"></select>
-          <select ng-options="dog.name for dog in dogs" ng-model="selectedDog"></select>
-
-            <h2 class="text-center coverage-title">Wifi-Coverage Map</h2>
+          <form class="form-horizontal main-form-lables" novalidate>
+            <div class="form-group">
+              <label for="location" class="control-label">Location</label>
+                <select class="coverage-form" ng-options="loc.address for loc in locations" id="location" ng-model="selectedLocation"></select>
+            </div>
+            <div class="form-group animated fadeIn" ng-show="selectedLocation.address !== 'Select a Location'">
+              <label for="hide" class="control-label">Hide</label>
+              <select  class="coverage-form" ng-options="" id="hide" ng-model="selectedHide"></select>
+            </div>
+            <div class="form-group animated fadeIn" ng-show="selectedLocation.address !== 'Select a Location'">
+              <label for="owner" class="control-label">Owner</label>
+              <select  class="coverage-form" id="owner"  ng-options="owner.name for owner in owners" ng-model="selectedOwner" ng-change="getDogs(selectedOwner.ownerid)"></select>
+            </div>
+            <div class="form-group animated fadeIn" ng-show="selectedOwner.name !== 'Select an Owner'">
+              <label for="dog" class="control-label">Location</label>
+              <select  class="coverage-form" id="dog"  ng-options="dog.name for dog in dogs" ng-model="selectedDog"></select>
+            </div>
+          </form>
+            <!-- <h2 class="text-center coverage-title">Wifi-Coverage Map</h2> -->
 
             <h2 class="text-center coverage-title">Track</h2>
             <div class="btn btn-primary center-block" ng-click="getTrack()" ng-hide="isCollecting">Start Tracking</div>

@@ -29,6 +29,10 @@ html, body {
   height: 90%;
   margin: 50px auto 0 auto;
 }
+
+.coverage-form{
+  color: black;
+}
 .coverage-title {
   color: #F5E8C4;
 }

@@ -25,8 +25,8 @@ module.exports = {
     locationid: {
       type: 'integer',
     },
-    geom: {
-
+    geojson: {
+      type: 'json'
     }
   }
 };

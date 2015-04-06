@@ -59,7 +59,7 @@ angular.module('plott')
           return $http.get('/tracks/signalToPoint');
         }
         else{
-          return $http.get('/tracks/fingerPrint', {cache: false});
+          return $http.get('/tracks/fingerPrint');
         }
 
       },
@@ -90,9 +90,7 @@ angular.module('plott')
 
         //Get the sum of the scores;
         var total = sumNormalize.reduce(function(a,b, i){
-          if (i < 5){
             return a + b;
-          }
         });
 
         for (var i = 0, len= fc.length; i < len; i++){

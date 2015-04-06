@@ -206,7 +206,7 @@ angular.module('plott')
             $scope.fingerPoint;
 
             finger.getPosition().then(function(response){
-              response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 5);
+              response.data.features = $filter('orderBy')(response.data.features, 'properties.score').splice(0, 4);
               finger.weigthedMean(response.data, function(latLng){
                 if(!$scope.fingerPoint){
                   console.log(latLng);
@@ -239,27 +239,27 @@ angular.module('plott')
             ////////////////////////////////////////////////////////////////////////////////////////////
 
             //Trilateration Method/////////////////////////////////////////////////////////////
-            finger.getPosition('trilateration').then(function(response){
-              track.addPosition(response.data.features[0]);
-              $scope.currentPos = L.geoJson(response.data, {
-                pointToLayer: function (feature, latlng){
-                  return L.circleMarker(latlng, {
-                    fillColor: '#FF7400',
-                    radius: 4,
-                    color: '#FFB273',
-                    weight: 1,
-                    fillOpacity: 1
-                  });
-                }
-              }).addTo(map);
-            },
-            function(err){
-              console.log(err);
-            });
+            // finger.getPosition('trilateration').then(function(response){
+            //   track.addPosition(response.data.features[0]);
+            //   $scope.currentPos = L.geoJson(response.data, {
+            //     pointToLayer: function (feature, latlng){
+            //       return L.circleMarker(latlng, {
+            //         fillColor: '#FF7400',
+            //         radius: 4,
+            //         color: '#FFB273',
+            //         weight: 1,
+            //         fillOpacity: 1
+            //       });
+            //     }
+            //   }).addTo(map);
+            // },
+            // function(err){
+            //   console.log(err);
+            // });
 
             //////////////////////////////////////////////////////////////////////////////
 
-          }, 1000);
+          }, 1500);
         };
 
         //Stop collecting track data
