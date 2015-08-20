@@ -2,7 +2,9 @@
 
 # Plott - Realtime Indoor Positioning System
 
-Plott uses wifi received signal strength (rss) to calculate a devices given location based
+## Background
+
+Plott is an open-source project working to create a highly accurate indoor positioning system using WiFi fingerprinting. The goal of Plott is to create an API that is capable of tracking a targeted device within 1 foot of its actual location and easily integrate with existing JavaScript web mapping libraries via GeoJson. In addition to the technical goals of Plott, the project is being developed to work with the client Sue McKinney of Dog Fun Forever in Durham, NC to preform geospatial analysis on K9 Nose Work training techniques. The goal of the study is to determine if trained dogs are able to identify odor (birch oil) more efficiently than untrained dogs.
 
 ### API
 
