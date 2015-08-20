@@ -10,6 +10,12 @@ Plott is an open-source project working to create a highly accurate indoor posit
 
 Coming Soon...
 
+### Demos
+
+Screen shot from original proof of concept
+
+![screenshot](http://cwhite911.github.io/NCSU_PORTFOLIO/build/assets/images/demo.PNG)
+
 ### Testing
 
 Coming Soon...
